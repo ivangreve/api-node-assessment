@@ -29,8 +29,16 @@ async function getById(id) {
     return user;
 }
 
+async function getByName(name) {
+    let users = await clientsRepository.getUsers();
+    const user = users.find(u => u.name === name);
+    if (!user) return;
+    return user;
+}
+
 module.exports = {
     authenticate,
     getAll,
-    getById
+    getById,
+    getByName
 };
