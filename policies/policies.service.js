@@ -1,7 +1,4 @@
-﻿const config = require('config.json');
-const jwt = require('jsonwebtoken');
-const Role = require('helpers/role');
-const policiesRepository = require('../repositories/policies.repository')
+﻿const policiesRepository = require('../repositories/policies.repository')
 
 async function getAll() {
     let policies = await policiesRepository.getPolicies();
