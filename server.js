@@ -10,8 +10,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // api routes
+app.use('/api/auth', require('./auth/auth.controller'));
 app.use('/api/clients', require('./clients/clients.controller'));
-
+app.use('/api/policies', require('./policies/policies.controller'));
 // global error handler
 app.use(errorHandler);
 

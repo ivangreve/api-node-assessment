@@ -25,6 +25,7 @@ let getUserByEmail = async(email) => {
 
 }
 
-
-exports.getUsers = getUsers;
-exports.getUserByEmail = getUserByEmail;
+module.exports = {
+    getUsers,
+    getUserByEmail
+};
