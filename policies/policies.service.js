@@ -8,6 +8,13 @@ async function getAll() {
     return policies;
 }
 
+async function getById(id) {
+    let policies = await policiesRepository.getPolicies();
+    const policie = policies.find(u => u.id === id);
+    if (!policie) return;
+    return policie;
+}
+
 async function getByClientId(id) {
     let policies = await policiesRepository.getPolicies();
 
@@ -18,5 +25,6 @@ async function getByClientId(id) {
 
 module.exports = {
     getAll,
-    getByClientId
+    getByClientId,
+    getById
 };

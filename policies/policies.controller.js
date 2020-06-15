@@ -9,7 +9,6 @@ const Role = require('helpers/role');
 router.get('/', authorize(), getAll);  // all authenticated users
 router.get('/clientId/:clientId', authorize(), getByClientId);  // all authenticated users
 router.get('/clientName/:clientName', authorize(Role.Admin), getByClientName); // Get the list of policies linked to a user name -> Can be accessed by users with role "admin"
-router.get('/clientName/:clientName', authorize(Role.Admin), getByClientName); // Get the user linked to a policy number -> Can be accessed by users with role "admin"
 
 module.exports = router;
 
