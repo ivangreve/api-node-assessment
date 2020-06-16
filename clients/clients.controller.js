@@ -7,9 +7,9 @@ const Role = require('helpers/role');
 
 // routes
 router.get('/', authorize([Role.Admin]), getAll); // Get all user data => Can be accessed by role "admin"
-router.get('/id/:id', authorize([Role.User, Role.Admin]), getById); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
-router.get('/name/:name', authorize([Role.User, Role.Admin]), getByName); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
-router.get('/policieId/:policieId', authorize([Role.Admin]), getByPolicieId); // Get the user linked to a policy number -> Can be accessed by users with role "admin"
+router.get('/id=:id', authorize([Role.User, Role.Admin]), getById); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
+router.get('/name=:name', authorize([Role.User, Role.Admin]), getByName); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
+router.get('/policieId=:policieId', authorize([Role.Admin]), getByPolicieId); // Get the user linked to a policy number -> Can be accessed by users with role "admin"
 
 module.exports = router;
 

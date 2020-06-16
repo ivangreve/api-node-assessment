@@ -1,8 +1,10 @@
 let axios = require('axios');
+const dotenv = require('dotenv');
+dotenv.config();
 
 let getPolicies = async () => {
     try {
-        let response = await axios.get('http://www.mocky.io/v2/580891a4100000e8242b75c5');
+        let response = await axios.get(process.env.API_CLIENT_DATA);
         return response.data.policies;
     }
     catch {

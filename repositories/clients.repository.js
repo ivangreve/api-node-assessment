@@ -1,8 +1,10 @@
 let axios = require('axios');
-  
+const dotenv = require('dotenv');
+dotenv.config();
+
 let getUsers = async () => {
     try {
-        let users = await axios.get('http://www.mocky.io/v2/5808862710000087232b75ac');
+        let users = await axios.get(process.env.API_USER_AUTH);
         return users.data.clients;
     }
     catch {
