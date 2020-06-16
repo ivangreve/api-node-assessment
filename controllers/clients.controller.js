@@ -1,7 +1,7 @@
 ﻿const express = require('express');
 const router = express.Router();
-const clientService = require('./clients.service');
-const policiesService = require('../policies/policies.service');
+const clientService = require('../services/clients.service');
+const policiesService = require('../services/policies.service');
 const authorize = require('helpers/authorize')
 const Role = require('helpers/role');
 

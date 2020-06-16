@@ -12,7 +12,26 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  role:
+                    type: string
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
       operationId: get-clients
       security:
         - Authorization: []
@@ -29,6 +48,19 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  role:
+                    type: string
         '400':
           description: Bad Request
         '401':
@@ -49,6 +81,19 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  role:
+                    type: string
         '400':
           description: Bad Request
         '401':
@@ -69,6 +114,20 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  role:
+                    type: string
+              examples: {}
         '400':
           description: Bad Request
         '401':
@@ -83,6 +142,23 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  amountInsured:
+                    type: number
+                  email:
+                    type: string
+                  inceptionDate:
+                    type: string
+                  installmentPayment:
+                    type: boolean
+                  clientId:
+                    type: string
         '400':
           description: Bad Request
         '401':
@@ -103,6 +179,24 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  amountInsured:
+                    type: number
+                  email:
+                    type: string
+                  inceptionDate:
+                    type: string
+                  installmentPayment:
+                    type: boolean
+                  clientId:
+                    type: string
+              examples: {}
         '400':
           description: Bad Request
         '401':
@@ -123,6 +217,25 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  amountInsured:
+                    type:
+                      - string
+                      - number
+                  email:
+                    type: string
+                  inceptionDate:
+                    type: string
+                  installmentPayment:
+                    type: boolean
+                  clientId:
+                    type: string
         '400':
           description: Bad Request
         '401':
@@ -135,10 +248,24 @@ paths:
       summary: ''
       operationId: post-auth-authenticate
       responses:
-        '200':
-          description: OK
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  role:
+                    type: string
+                  token:
+                    type: string
+              examples: {}
         '401':
           description: Unauthorized
       description: ''
@@ -150,16 +277,44 @@ paths:
               properties:
                 email:
                   type: string
+            examples: {}
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+          text/html:
+            schema:
+              type: object
+              properties: {}
         description: ''
 components:
   schemas:
-    UserLoginContract:
-      title: UserLoginContract
+    LoginRequestContract:
+      title: LoginRequestContract
       type: object
+      description: ''
+      properties:
+        email:
+          type: string
+    LoginResponseContract:
+      title: LoginResponseContract
+      type: object
+      description: ''
       properties:
         id:
           type: string
-      description: ''
+        name:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        token:
+          type: string
   securitySchemes:
     Authorization:
       type: http
