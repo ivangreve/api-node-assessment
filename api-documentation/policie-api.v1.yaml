@@ -127,7 +127,6 @@ paths:
                     type: string
                   role:
                     type: string
-              examples: {}
         '400':
           description: Bad Request
         '401':
@@ -196,7 +195,6 @@ paths:
                     type: boolean
                   clientId:
                     type: string
-              examples: {}
         '400':
           description: Bad Request
         '401':
@@ -265,7 +263,6 @@ paths:
                     type: string
                   token:
                     type: string
-              examples: {}
         '401':
           description: Unauthorized
       description: ''

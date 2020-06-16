@@ -7,13 +7,13 @@ const Role = require('helpers/role');
 // routes
 router.post('/authenticate', authenticate); // public route
 
-module.exports = router;
 
+//Authentication only Email
 function authenticate(req, res, next) {
     clientService.authenticate(req.body)
-        .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
+        .then(user => user ? res.json(user) : res.status(401).json({ message: 'Email is incorrect' }))
         .catch(err => next(err));
 }
 
 
-
+module.exports = router;

@@ -7,21 +7,36 @@ async function getAll() {
 
 async function getById(id) {
     let policies = await policiesRepository.getPolicies();
-    const policie = policies.find(u => u.id === id);
+    const policie = findByPolicieId(policies, id);
     if (!policie) return;
     return policie;
 }
 
 async function getByClientId(id) {
     let policies = await policiesRepository.getPolicies();
-
-    const policiesFiltered = policies.filter(u => u.clientId === id);
+    const policiesFiltered = filterByClientId(policies, id);
     if (!policiesFiltered) return;
     return policiesFiltered;
+}
+
+
+function filterByClientId(policiesArr, clientId){
+    let policies = policiesArr.filter(u => u.clientId === clientId);
+    return policies;
+}
+
+function findByPolicieId(policiesArr, id){
+    const policie = policiesArr.find(u => u.id === id);
+    return policie;
 }
 
 module.exports = {
     getAll,
     getByClientId,
-    getById
+    getById,
+
+    //Functions for Unit Testing
+    filterByClientId,
+    findByPolicieId
+
 };
