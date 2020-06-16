@@ -1,0 +1,166 @@
+openapi: 3.0.0
+info:
+  title: PolicieApi
+  version: '1.0'
+  contact:
+    name: Ivan Greve
+    email: ivangreve@gmail.com
+servers:
+  - url: 'http://localhost:4000/api'
+paths:
+  /clients:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-clients
+      security:
+        - Authorization: []
+  '/clients/clientById/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      operationId: get-clients-clientById-id
+      security:
+        - Authorization: []
+  '/clients/clientByName/{name}':
+    parameters:
+      - schema:
+          type: string
+        name: name
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      operationId: get-clients-clientByName-name
+      security:
+        - Authorization: []
+  '/clients/clientByPolicieId/{policieId}':
+    parameters:
+      - schema:
+          type: string
+        name: policieId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      operationId: get-clients-clientByPolicieId-policieId
+      security:
+        - Authorization: []
+  /policies:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      operationId: get-policies
+      security:
+        - Authorization: []
+  '/policies/policiesByClientId/{clientId}':
+    parameters:
+      - schema:
+          type: string
+        name: clientId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      operationId: get-policies-policiesByClientId-clientId
+      security:
+        - Authorization: []
+  '/policies/policiesByClientName/{clientName}':
+    parameters:
+      - schema:
+          type: string
+        name: clientName
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      operationId: get-policies-policiesByClientName-clientName
+      security:
+        - Authorization: []
+  /auth/authenticate:
+    post:
+      summary: ''
+      operationId: post-auth-authenticate
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+        description: ''
+components:
+  schemas:
+    UserLoginContract:
+      title: UserLoginContract
+      type: object
+      properties:
+        id:
+          type: string
+      description: ''
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer

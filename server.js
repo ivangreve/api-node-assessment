@@ -4,6 +4,12 @@ const app = express();
 const bodyParser = require('body-parser');
 const errorHandler = require('helpers/error-handler');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express')
+const yaml = require('yamljs');
+
+const swaggerDocument = yaml.load('./api-documentation/policie-api.v1.yaml');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

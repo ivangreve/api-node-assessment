@@ -6,9 +6,9 @@ const authorize = require('helpers/authorize')
 const Role = require('helpers/role');
 
 // routes
-router.get('/', authorize([Role.Admin]), getAll);  // Get all user data => Can be accessed by role "admin"
-router.get('/clientId=:clientId', authorize(), getByClientId);  // all authenticated users
-router.get('/clientName=:clientName', authorize([Role.Admin]), getByClientName); // Get the list of policies linked to a user name -> Can be accessed by users with role "admin"
+router.get('/', authorize([Role.Admin]), getAll); // Additional Service => Only Admin
+router.get('/policiesByClientId/:clientId', authorize([Role.Admin]), getByClientId);  // Additional Service => Only Admin
+router.get('/policiesByClientName/:clientName', authorize([Role.Admin]), getByClientName); // Get the list of policies linked to a user name -> Can be accessed by users with role "admin"
 
 module.exports = router;
 

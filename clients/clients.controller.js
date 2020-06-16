@@ -5,11 +5,11 @@ const policiesService = require('../policies/policies.service');
 const authorize = require('helpers/authorize')
 const Role = require('helpers/role');
 
-// routes
-router.get('/', authorize([Role.Admin]), getAll); // Get all user data => Can be accessed by role "admin"
-router.get('/id=:id', authorize([Role.User, Role.Admin]), getById); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
-router.get('/name=:name', authorize([Role.User, Role.Admin]), getByName); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
-router.get('/policieId=:policieId', authorize([Role.Admin]), getByPolicieId); // Get the user linked to a policy number -> Can be accessed by users with role "admin"
+// Routes
+router.get('/', authorize([Role.Admin]), getAll); // Additional Service => Only Admin
+router.get('/clientById/:id', authorize([Role.User, Role.Admin]), getById); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
+router.get('/clientByName/:name', authorize([Role.User, Role.Admin]), getByName); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
+router.get('/clientByPolicieId/:policieId', authorize([Role.Admin]), getByPolicieId); // Get the user linked to a policy number -> Can be accessed by users with role "admin"
 
 module.exports = router;
 
@@ -38,6 +38,9 @@ function getByName(req, res, next) {
 async function getByPolicieId(req, res, next) {
     const policieId = req.params.policieId;
     let policie = await policiesService.getById(policieId);
+
+    if(policie.lenght)
+    return;
 
     clientService.getById(policie.clientId)
         .then(clients => res.json(clients))
