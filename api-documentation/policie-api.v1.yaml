@@ -274,7 +274,10 @@ paths:
               properties:
                 email:
                   type: string
-            examples: {}
+            examples:
+              exampleBody:
+                summary: "Request token body example"
+                value: {"email": "ivangreve@gmail.com"}
           application/xml:
             schema:
               type: object

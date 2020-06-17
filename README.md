@@ -18,7 +18,8 @@
 
 
 ### **Run Tests** ⚙
-1. In the root folder, run the following commands.
+1. Start **API** => *To run the integration Tests correctly the server must be running*
+2. In the root folder, run the following commands.
 	-  `$ npm test`.
   
 
