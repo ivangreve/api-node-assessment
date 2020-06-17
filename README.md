@@ -8,11 +8,11 @@
 
 ### Start API ✔
 1. Install external packages.
-- In the root folder, run the following commands.
+- In the root folder, run the following command.
 	-  `$ npm install`.
 
 2. Run server.
-- In the root folder, run the following commands.
+- In the root folder, run the following command.
 	- `$ npm start`
 3. ***PoliciesApi*** is ready!
 
@@ -41,9 +41,9 @@ All the API documentation was created with the standart [OpenAPI](https://swagge
 }
 ```
 
-*NOTE: I used only the email to authenticate*
+*NOTE: I used only the email field to authenticate the user*
 
-## Used Technologys/Tools
+## Used Technologies/Tools
 - [NodeJS](https://nodejs.org/es/)
 - [Express](https://expressjs.com/es/)
 - [Express JSON Web Tokens](https://github.com/auth0/express-jwt#readme)
