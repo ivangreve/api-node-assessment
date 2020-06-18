@@ -1,68 +1,66 @@
-﻿const config = require('../config.json');
-const jwt = require('jsonwebtoken');
-const Role = require('../helpers/role');
-const clientsRepository = require('../repositories/clients.repository')
-
+﻿const config = require("../config.json");
+const jwt = require("jsonwebtoken");
+const clientsRepository = require("../repositories/clients.repository");
 
 async function authenticate({ email }) {
-    let users = await clientsRepository.getUsers();
-    const user = findByEmail(users, email)
-    if (user) {
-        return createUserToken(user);
-    }
+  const users = await clientsRepository.getUsers();
+  const user = findByEmail(users, email);
+  if (user) {
+    return createUserToken(user);
+  }
 }
 
 async function getAll() {
-    let users = await clientsRepository.getUsers();
-    return users;
+  const users = await clientsRepository.getUsers();
+  return users;
 }
 
 async function getById(id) {
-    let users = await clientsRepository.getUsers();
-    const user = findById(users, id);
-    if (!user) return [];
-    return user;
+  const users = await clientsRepository.getUsers();
+  const user = findById(users, id);
+  if (!user) return [];
+  return user;
 }
 
 async function getByName(name) {
-    let users = await clientsRepository.getUsers();
-    const user = findByName(users, name);
-    if (!user) return [];
-    return user;
+  const users = await clientsRepository.getUsers();
+  const user = findByName(users, name);
+  if (!user) return [];
+  return user;
 }
 
 function findByName(userArr, name) {
-    const user = userArr.find(u => u.name === name);
-    return user;
+  const user = userArr.find((u) => u.name === name);
+  return user;
 }
 
 function findById(userArr, id) {
-    const user = userArr.find(u => u.id === id);
-    return user;
+  const user = userArr.find((u) => u.id === id);
+  return user;
 }
 
 function findByEmail(userArr, email) {
-    const user = userArr.find(u => u.email === email);
-    return user;
+  const user = userArr.find((u) => u.email === email);
+  return user;
 }
 
 function createUserToken(user) {
-    const token = jwt.sign({ id: user.id, role: user.role }, config.secret);
-    return {
-        ...user,
-        token
-    };
+  const token = jwt.sign({ id: user.id, role: user.role }, config.secret);
+  return {
+    ...user,
+    token
+  };
 }
 
 module.exports = {
-    authenticate,
-    getAll,
-    getById,
-    getByName,
+  authenticate,
+  getAll,
+  getById,
+  getByName,
 
-    //Functions for Unit Testing
-    findByName,
-    findById,
-    findByEmail,
-    createUserToken
+  //Functions for Unit Testing
+  findByName,
+  findById,
+  findByEmail,
+  createUserToken
 };
