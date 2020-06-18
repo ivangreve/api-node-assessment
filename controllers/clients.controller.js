@@ -1,48 +1,62 @@
-﻿const express = require('express');
+﻿const express = require("express");
 const router = express.Router();
-const clientService = require('../services/clients.service');
-const policiesService = require('../services/policies.service');
-const authorize = require('helpers/authorize')
-const Role = require('helpers/role');
+const clientService = require("../services/clients.service");
+const policiesService = require("../services/policies.service");
+const authorize = require("helpers/authorize");
+const Role = require("helpers/role");
+const asyncMiddleware = require("../helpers/asyncMiddleware");
 
-// Routes
-router.get('/', authorize([Role.Admin]), getAll); // Additional Service => Only Admin
-router.get('/clientById/:id', authorize([Role.User, Role.Admin]), getById); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
-router.get('/clientByName/:name', authorize([Role.User, Role.Admin]), getByName); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
-router.get('/clientByPolicieId/:policieId', authorize([Role.Admin]), getByPolicieId); // Get the user linked to a policy number -> Can be accessed by users with role "admin"
+// Clients Controller ROUTES
+router.get(
+  "/",
+  authorize([Role.Admin, Role.User]),
+  asyncMiddleware(async (req, res, next) => getAll(req, res, next))
+); // Additional Service => Only Admin
+
+router.get(
+  "/Id/:id",
+  authorize([Role.User, Role.Admin]),
+  asyncMiddleware(async (req, res, next) => getById(req, res, next))
+); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
+
+router.get(
+  "/Name/:name",
+  authorize([Role.User, Role.Admin]),
+  asyncMiddleware(async (req, res, next) => getByName(req, res, next))
+); // Get user data filtered by user id -> Can be accessed by users with role "users" and "admin"
+
+router.get(
+  "/PolicieId/:policieId",
+  authorize([Role.Admin]),
+  asyncMiddleware(async (req, res, next) => getByPolicieId(req, res, next))
+); // Get the user linked to a policy number -> Can be accessed by users with role "admin"
 
 module.exports = router;
 
-function getAll(req, res, next) {
-    clientService.getAll()
-        .then(users => res.json(users))
-        .catch(err => next(err));
+async function getAll(req, res, next) {
+  const users = await clientService.getAll();
+  res.json(users);
 }
 
-function getById(req, res, next) {
-    const id = req.params.id;
+async function getById(req, res, next) {
+  const id = req.params.id;
 
-    clientService.getById(id)
-        .then(user => user ? res.json(user) : res.sendStatus(404))
-        .catch(err => next(err));
+  const user = await clientService.getById(id);
+  res.json(user);
 }
 
-function getByName(req, res, next) {
-    const name = req.params.name;
+async function getByName(req, res, next) {
+  const name = req.params.name;
 
-    clientService.getByName(name)
-        .then(user => user ? res.json(user) : res.sendStatus(404))
-        .catch(err => next(err));
+  const user = await clientService.getByName(name);
+  res.json(user);
 }
 
 async function getByPolicieId(req, res, next) {
-    const policieId = req.params.policieId;
-    let policie = await policiesService.getById(policieId);
+  const policieId = req.params.policieId;
+  const policie = await policiesService.getById(policieId);
 
-    if(policie.lenght)
-    return;
-
-    clientService.getById(policie.clientId)
-        .then(clients => res.json(clients))
-        .catch(err => next(err));
+  if (policie.lenght) return [];
+  const clients = await clientService.getById(policieId);
+  res.json(clients);
 }
