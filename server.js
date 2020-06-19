@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const errorHandler = require("helpers/error-handler");
+const errorHandler = require("./helpers/error-handler");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const yaml = require("yamljs");
@@ -26,3 +26,5 @@ const port = process.env.NODE_ENV === "production" ? 80 : 4000;
 const server = app.listen(port, function () {
   console.log("Server listening on port " + port);
 });
+
+module.exports = app;
