@@ -19,7 +19,7 @@
 
 ### **Run Tests** ⚙
 
-1. Start **API** => _To run the integration Tests correctly the server must be running_
+1. Make sure that the **API** isn't running
 2. In the root folder, run the following commands.
    - `$ npm test`.
 

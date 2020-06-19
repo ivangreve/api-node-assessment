@@ -1,19 +1,20 @@
 openapi: 3.0.0
 info:
   title: PolicieApi
-  version: '1.0'
+  version: "1.0"
   contact:
     name: Ivan Greve
     email: ivangreve@gmail.com
 servers:
-  - url: 'http://localhost:4000/api'
+  - url: "http://localhost:4000/api"
 paths:
   /clients:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Clients
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -28,14 +29,14 @@ paths:
                     type: string
                   role:
                     type: string
-        '400':
+        "400":
           description: Bad Request
-        '401':
+        "401":
           description: Unauthorized
       operationId: get-clients
       security:
         - Authorization: []
-  '/clients/clientById/{id}':
+  "/clients/Id/{id}":
     parameters:
       - schema:
           type: string
@@ -44,9 +45,10 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Clients
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -61,14 +63,14 @@ paths:
                     type: string
                   role:
                     type: string
-        '400':
+        "400":
           description: Bad Request
-        '401':
+        "401":
           description: Unauthorized
       operationId: get-clients-clientById-id
       security:
         - Authorization: []
-  '/clients/clientByName/{name}':
+  "/clients/Name/{name}":
     parameters:
       - schema:
           type: string
@@ -77,9 +79,10 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Clients
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -94,14 +97,14 @@ paths:
                     type: string
                   role:
                     type: string
-        '400':
+        "400":
           description: Bad Request
-        '401':
+        "401":
           description: Unauthorized
       operationId: get-clients-clientByName-name
       security:
         - Authorization: []
-  '/clients/clientByPolicieId/{policieId}':
+  "/clients/PolicieId/{policieId}":
     parameters:
       - schema:
           type: string
@@ -110,9 +113,10 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Clients
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -127,9 +131,9 @@ paths:
                     type: string
                   role:
                     type: string
-        '400':
+        "400":
           description: Bad Request
-        '401':
+        "401":
           description: Unauthorized
       operationId: get-clients-clientByPolicieId-policieId
       security:
@@ -137,9 +141,9 @@ paths:
   /policies:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags: ["Policies"]
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -158,14 +162,14 @@ paths:
                     type: boolean
                   clientId:
                     type: string
-        '400':
+        "400":
           description: Bad Request
-        '401':
+        "401":
           description: Unauthorized
       operationId: get-policies
       security:
         - Authorization: []
-  '/policies/policiesByClientId/{clientId}':
+  "/policies/ClientId/{clientId}":
     parameters:
       - schema:
           type: string
@@ -174,9 +178,9 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags: ["Policies"]
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -195,14 +199,14 @@ paths:
                     type: boolean
                   clientId:
                     type: string
-        '400':
+        "400":
           description: Bad Request
-        '401':
+        "401":
           description: Unauthorized
       operationId: get-policies-policiesByClientId-clientId
       security:
         - Authorization: []
-  '/policies/policiesByClientName/{clientName}':
+  "/policies/ClientName/{clientName}":
     parameters:
       - schema:
           type: string
@@ -211,9 +215,9 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags: ["Policies"]
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -223,9 +227,7 @@ paths:
                   id:
                     type: string
                   amountInsured:
-                    type:
-                      - string
-                      - number
+                    type: string
                   email:
                     type: string
                   inceptionDate:
@@ -234,19 +236,20 @@ paths:
                     type: boolean
                   clientId:
                     type: string
-        '400':
+        "400":
           description: Bad Request
-        '401':
+        "401":
           description: Unauthorized
       operationId: get-policies-policiesByClientName-clientName
       security:
         - Authorization: []
   /auth/authenticate:
     post:
-      summary: ''
+      summary: ""
+      tags: ["Authentication"]
       operationId: post-auth-authenticate
       responses:
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
@@ -263,9 +266,9 @@ paths:
                     type: string
                   token:
                     type: string
-        '401':
+        "401":
           description: Unauthorized
-      description: ''
+      description: ""
       requestBody:
         content:
           application/json:
@@ -276,8 +279,9 @@ paths:
                   type: string
             examples:
               exampleBody:
-                summary: "Request token body example"
-                value: {"email": "ivangreve@gmail.com"}
+                summary: Request token body example
+                value:
+                  email: ivangreve@gmail.com
           application/xml:
             schema:
               type: object
@@ -290,20 +294,20 @@ paths:
             schema:
               type: object
               properties: {}
-        description: ''
+        description: ""
 components:
   schemas:
     LoginRequestContract:
       title: LoginRequestContract
       type: object
-      description: ''
+      description: ""
       properties:
         email:
           type: string
     LoginResponseContract:
       title: LoginResponseContract
       type: object
-      description: ''
+      description: ""
       properties:
         id:
           type: string
@@ -319,3 +323,8 @@ components:
     Authorization:
       type: http
       scheme: bearer
+tags:
+  - name: Clients
+    description: Clients services
+  - name: Policies
+    description: Policies services
