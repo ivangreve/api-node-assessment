@@ -4,7 +4,7 @@ const {
 } = require("../services/policies.service.js");
 
 test("Should return filtered by ClientId array", () => {
-  let arrFiltered = filterByClientId(
+  const arrFiltered = filterByClientId(
     mockedPolicies,
     "e8fd159b-57c4-4d36-9bd7-a59ca13057bb"
   );
@@ -13,7 +13,7 @@ test("Should return filtered by ClientId array", () => {
 });
 
 test("Should return Whitley client object", () => {
-  let objFound = findByPolicieId(
+  const objFound = findByPolicieId(
     mockedPolicies,
     "6f514ec4-1726-4628-974d-20afe4da130c"
   );

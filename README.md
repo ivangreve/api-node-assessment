@@ -51,7 +51,8 @@ _NOTE: I used only the email field to authenticate the user_
 - [NodeJS](https://nodejs.org/es/)
 - [Express](https://expressjs.com/es/)
 - [Express JSON Web Tokens](https://github.com/auth0/express-jwt#readme)
-- [Jest]()
+- [Jest](https://jestjs.io/)
 - OpenAPI
 - [SwaggerUI](https://swagger.io/specification/)
-- ESLint + Prettier
+- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/)
+- [SuperTest](https://github.com/visionmedia/supertest)

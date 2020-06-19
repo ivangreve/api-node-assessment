@@ -2,8 +2,8 @@
 const router = express.Router();
 const clientService = require("../services/clients.service");
 const policiesService = require("../services/policies.service");
-const authorize = require("helpers/authorize");
-const Role = require("helpers/role");
+const authorize = require("../helpers/authorize");
+const Role = require("../helpers/role");
 const asyncMiddleware = require("../helpers/asyncMiddleware");
 
 // Clients Controller ROUTES
